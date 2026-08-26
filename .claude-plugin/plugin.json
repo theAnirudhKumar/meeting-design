@@ -1,0 +1,12 @@
+{
+  "name": "meeting-design",
+  "description": "Design the meeting before you run it. Names the decision, states the decision rule, cuts the room to the people who change the outcome, sequences divergence before convergence, and plans for deadlock in advance. Ships fill-in agenda and pre-read templates rather than advice.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Anirudh Kumar",
+    "url": "https://github.com/theAnirudhKumar"
+  },
+  "homepage": "https://hustlyst.com?ref=github",
+  "repository": "https://github.com/theAnirudhKumar/meeting-design",
+  "license": "MIT"
+}
