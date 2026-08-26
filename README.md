@@ -82,8 +82,8 @@ If you run meetings for a living and something here is wrong, that is the most u
 
 ## Elsewhere
 
-- **[Hustlyst](https://hustlyst.com)** - twice a week on AI and automation tools for people who don't code
-- **[CS Pulse](https://cspulse.com)** - community and newsletter for customer success practitioners
+- **[Hustlyst](https://hustlyst.com?ref=github)** - twice a week on AI and automation tools for people who don't code
+- **[CS Pulse](https://cspulse.com?ref=github)** - community and newsletter for customer success practitioners
 - **[More skills](https://github.com/theAnirudhKumar/skills)** - the general-purpose ones
 
 MIT licensed. Fork it, change it, ship it.
