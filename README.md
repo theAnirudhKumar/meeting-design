@@ -8,6 +8,8 @@ This is a skill for Claude that fixes that at the design stage. You describe the
 
 It ships fill-in templates rather than advice, because advice does not survive contact with a calendar invite.
 
+The skill is [`skills/meeting-design`](skills/meeting-design). `SKILL.md` is the method, `references/` holds the decision rules and agenda shapes, and `assets/` holds the two templates you can paste straight into an invite.
+
 ---
 
 ## What it actually does
@@ -78,12 +80,14 @@ What this skill adds is the sequencing and the templates, not the ideas.
 
 If you run meetings for a living and something here is wrong, that is the most useful thing you can tell me. Open an issue with what happens in reality and what the skill assumed instead.
 
+[CONTRIBUTING.md](CONTRIBUTING.md) has the standard this repository holds itself to. Before opening a pull request, run `python3 validate-skills.py`. The same script runs on every pull request, so anything it catches locally is anything that would fail there.
+
 ---
 
 ## Elsewhere
 
 - **[Hustlyst](https://hustlyst.com?ref=github)** - twice a week on AI and automation tools for people who don't code
 - **[CS Pulse](https://cspulse.com?ref=github)** - community and newsletter for customer success practitioners
-- **[More skills](https://github.com/theAnirudhKumar/skills)** - the general-purpose ones
+- **[work-design](https://github.com/theAnirudhKumar/work-design)** - the rest of the set: vetting a tool before you sign up, carrying context between sessions, catching an expensive request
 
 MIT licensed. Fork it, change it, ship it.
