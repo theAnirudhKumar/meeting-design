@@ -36,6 +36,14 @@ You do not need to be technical. Nothing here needs a terminal, a workspace, a c
 
 ## Install
 
+**The easy way: one paste**
+
+If your AI tool can read and write files on your computer (Claude Cowork, Claude Code, or similar), paste this in and let it do the rest:
+
+> I want to install the meeting-design skill from https://github.com/theAnirudhKumar/meeting-design. Download or clone the repository, then copy the `skills/meeting-design` folder into `~/.claude/skills/` (or `.claude/skills/` if this is for one project only), keeping its own folder name. Tell me the exact folder path it landed in when you are done.
+
+If your AI tool cannot read or write files on its own, which is most web chat, use one of the manual methods below instead.
+
 **In the Claude app (no terminal needed)**
 
 1. Download this repository as a ZIP, or clone it
