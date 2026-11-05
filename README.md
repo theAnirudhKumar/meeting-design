@@ -143,7 +143,7 @@ These skills are plain markdown instructions. They contain no code, make no netw
 
 If you run meetings for a living and something here is wrong, that is the most useful thing you can tell me. Open an issue with what happens in reality and what the skill assumed instead.
 
-The evals in [`evals/`](evals) are written but have not been run against any model. A run, with the results recorded honestly, is a welcome contribution.
+The evals in [`evals/`](evals) were run once on Haiku, Sonnet and Opus, with one sample per case, and each file records the results and a reading of every miss. A rerun after any change to a skill description is a welcome contribution.
 
 [CONTRIBUTING.md](CONTRIBUTING.md) has the standard this repository holds itself to. Before opening a pull request, run `python3 validate-skills.py`. The same script runs on every pull request.
 
