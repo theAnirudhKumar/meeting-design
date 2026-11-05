@@ -1,71 +1,107 @@
 # meeting-design
 
-**Design the meeting before you run it.**
+**Paste in an invite, a set of notes or your recurring calendar. Get back a verdict, a rewritten invite or a decision record you can send.**
 
-Most bad meetings were bad before anyone walked in. The agenda named topics rather than a decision, nobody said how the decision would get made, and the one person who could actually make it was not in the room.
+Three skills for Claude that cover the whole life of a meeting: [design it before](skills/meeting-design), [close it after](skills/meeting-close), [audit the ones that repeat](skills/meeting-audit). Nothing to set up. They work on text you paste into a chat.
 
-This is a skill for Claude that fixes that at the design stage. You describe the meeting, it gives you back a ready-to-send agenda with the decision named, the decision rule stated, the attendee list cut, and a plan for what happens if the room deadlocks.
+## Before and after
 
-It ships fill-in templates rather than advice, because advice does not survive contact with a calendar invite.
+You paste this:
 
-The skill is [`skills/meeting-design`](skills/meeting-design). `SKILL.md` is the method, `references/` holds the decision rules and agenda shapes, and `assets/` holds the two templates you can paste straight into an invite.
+```
+Weekly Product Sync
+Fridays 10:00-11:00, recurring. 11 attendees.
+Weekly sync to go over updates from each team and discuss blockers. Please come prepared to share.
+```
+
+You get this back (from [the full example](examples/weekly-status-meeting.md)):
+
+```
+Verdict: Shrink. Eleven people take turns reporting to one lead. Updates move
+to writing; the call keeps only what is stuck.
+
+Cost: 11 people x 1 hour x 60 = 660 per meeting, about 2,860 a month at weekly.
+(Assumption: 60 per hour per person. Replace it with your own.)
+
+Title: Product blockers: who is stuck and what unblocks them
+Length: 25 min   Chair: Maya
+Decision: By the end every blocked item has an owner and a next step.
+How we decide: Delegate. The person who can unblock an item owns it.
+If we do not decide: Maya assigns it by end of Monday.
+Read first: the status thread. Add your update by Thursday 5pm.
+Who: five leads stay. The other six read the thread and join when named.
+```
+
+The people, the company and the numbers in that example are invented. [More examples](examples/) cover a 14-person kickoff, a customer review, messy notes after a call and a recurring calendar.
 
 ---
 
-## What it actually does
+## Say this, get that
 
-| Step | What you get |
-| :--- | :--- |
-| Should this be a meeting | A straight answer, and what replaces it if not |
-| The decision sentence | One line you can finish, or the honest admission that this is not a decision meeting |
-| The decision rule | Directive, consult, consent, consensus or delegate, phrased for the invite |
-| The room | Deciders, contributors, and everyone you can safely leave off |
-| The agenda | Minutes per item, and which item gets cut if you overrun |
-| The deadlock plan | What happens if you do not decide, agreed before you need it |
-| The close | Decision, owner, date, who gets told, filled in while people are still in the room |
+| Say this | Skill | You get |
+| :--- | :--- | :--- |
+| "Fix this invite" with the invite pasted. "Build an agenda for X." "Who should be in this meeting?" "Prep my 1:1 / retro / board review / customer call." | [`meeting-design`](skills/meeting-design) | A verdict (cancel and replace with a doc, shrink, or keep and fix), a rewritten invite ready to paste, the attendee cut, the meeting cost |
+| "Here are my notes, what did we actually decide?" "Draft the follow-up." "Who owns what from this?" | [`meeting-close`](skills/meeting-close) | A decision record, a follow-up message ready to send, and a list of what was discussed but never decided |
+| "Audit my recurring meetings." "Which of these can I cancel?" "What do our standing meetings cost?" | [`meeting-audit`](skills/meeting-audit) | A verdict per meeting, hours a month freed, the cost, a sunset date, and the one message to send |
 
----
-
-## Who this is for
-
-People who chair things without the word "facilitator" anywhere in their job title. Ops leads, account managers, project managers, HR partners, agency leads, founders, community organisers, anyone who called a meeting this week and is not sure it needed to happen.
-
-You do not need to be technical. Nothing here needs a terminal, a workspace, a connector or an API key. It works from what you type into a chat window.
+Many AI meeting tools work after the meeting and summarise it. These three work on the parts a summary cannot fix: the design before it, and the decision and follow-up after it.
 
 ---
 
 ## Install
 
-**The easy way: one paste**
-
-If your AI tool can read and write files on your computer (Claude Cowork, Claude Code, or similar), paste this in and let it do the rest:
-
-```
-I want to install the meeting-design skill from
-https://github.com/theAnirudhKumar/meeting-design. Download or clone the
-repository, then copy the skills/meeting-design folder into
-~/.claude/skills/ (or .claude/skills/ if this is for one project only),
-keeping its own folder name. Tell me the exact folder path it landed in
-when you are done.
-```
-
-If your AI tool cannot read or write files on its own, which is most web chat, use one of the manual methods below instead.
-
-**In the Claude app (no terminal needed)**
-
-1. Download this repository as a ZIP, or clone it
-2. Zip the `skills/meeting-design` folder on its own
-3. In Claude, go to Customize, then Skills, then Create skill, then Upload skill
-4. Upload the ZIP
-
-**As a plugin, in Claude Code or Cowork**
+**In Claude Code or Cowork, one line:**
 
 ```
 /plugin marketplace add theAnirudhKumar/meeting-design
+```
+
+then
+
+```
 /plugin install meeting-design@meeting-design-marketplace
 ```
 
-**Or just read it.** The skill is plain markdown. `skills/meeting-design/SKILL.md` is the method, and the two files in `assets/` are templates you can copy into a calendar invite without Claude involved at all.
+**Or paste this to an AI tool that can read and write files on your computer:**
+
+```
+Install the skills from https://github.com/theAnirudhKumar/meeting-design:
+copy every folder in its skills/ directory into ~/.claude/skills/ and tell
+me where they landed.
+```
+
+**Or in the Claude app, no terminal:** download this repository as a ZIP, zip each folder inside `skills/` on its own, then go to Customize, Skills, Create skill, Upload skill and upload each ZIP. You can install just one.
+
+**Or just read it.** Each skill is plain markdown. The templates in each `assets/` folder can be copied into a calendar invite without Claude involved at all.
+
+---
+
+## What it does not do
+
+- It does not record, join or transcribe meetings. `meeting-close` works on notes or a transcript you paste.
+- It does not read your calendar unless you have a calendar connector installed and ask it to. Without one, you paste the list.
+- It does not send, cancel or schedule anything. It drafts; you send.
+- It is not a meeting summariser. If you want a faithful summary of what was said, use a call-recap or notes tool. These skills answer a different question: what was decided, by whom, by when, and over whose objection.
+
+Nothing here needs a terminal, a workspace, a connector or an API key.
+
+---
+
+## Who this is for
+
+People who chair things without the word "facilitator" in their job title. Ops leads, account managers, project managers, HR partners, agency leads, founders, anyone who called a meeting this week and is not sure it needed to happen, or sat in one that did not.
+
+---
+
+## What each skill does
+
+**[`meeting-design`](skills/meeting-design)** has two paths. Paste an invite and it takes the quick fix: verdict, cost, rewritten invite, attendee cut. Plan from scratch and it runs the full method: the decision in one sentence, the decision rule, who is in the room, silent reading, divergence before convergence, the time box, the deadlock plan, the close. It carries playbooks for 1:1s, standups and status meetings, customer calls, retros, interviews, and board or exec reviews.
+
+**[`meeting-close`](skills/meeting-close)** sorts pasted notes into decided, action, discussed but not decided, and dissent. A hedged "I think we agreed" is marked as needing confirmation, not passed off as a decision. Missing owners and dates are flagged in capitals instead of filled with plausible names.
+
+**[`meeting-audit`](skills/meeting-audit)** takes a list of recurring meetings and does the arithmetic: person-hours a month, cost, hours freed by each verdict. It will say Keep when Keep is the answer.
+
+**Meeting cost.** All three use one formula: attendees x hours x an hourly rate you give. If you give none, it shows the formula with a placeholder rate labelled as an assumption. It counts time in the room only, so it is a floor. It does not quote benchmarks.
 
 ---
 
@@ -78,16 +114,23 @@ The method is assembled from practice that is already well established, and it i
 - **Divergence before convergence** is the core of the Double Diamond, from the British Design Council
 - **The pre-mortem**, imagining the failure before it happens, is Gary Klein's, published in Harvard Business Review in 2007
 - **Recording the dissent and moving anyway** is Amazon's "disagree and commit"
+- **The 1:1 as the report's meeting, not the manager's,** is Andy Grove's, in *High Output Management*
+- **The five-phase retro** (set the stage, gather data, generate insights, decide what to do, close) is from Esther Derby and Diana Larsen's *Agile Retrospectives*, building on Norm Kerth's *Project Retrospectives*
+- **The decision record** is a relative of the architecture decision record Michael Nygard described in 2011
 
-What this skill adds is the sequencing and the templates, not the ideas.
+What these skills add is the sequencing, the quick-fix path from a pasted invite, the close, the audit and the templates, not the ideas.
 
 ---
 
 ## The two rules behind everything published here
 
-**Nothing may be a prerequisite.** A skill that errors because you lack a file, a connector or a workspace gets uninstalled. This one states the least you can give it and still get something useful.
+**Nothing may be a prerequisite.** A skill that errors because you lack a file, a connector or a workspace gets uninstalled. Each skill here states the least you can give it and still get something useful.
 
-**Every skill names the failure it exists to prevent.** If it cannot say what goes wrong without it, it is a template rather than a skill. This one prevents the meeting that ends in "let's take this offline" and reconvenes three weeks later having lost the thread.
+**Every skill names the failure it exists to prevent.** If it cannot say what goes wrong without it, it is a template rather than a skill.
+
+- `meeting-design` prevents the meeting that ends in "let's take this offline" and reconvenes three weeks later having lost the thread
+- `meeting-close` prevents everyone leaving with a different memory of what was agreed
+- `meeting-audit` prevents a calendar of standing meetings that each made sense once, with nobody able to say which still earn their hours
 
 ---
 
@@ -95,7 +138,9 @@ What this skill adds is the sequencing and the templates, not the ideas.
 
 If you run meetings for a living and something here is wrong, that is the most useful thing you can tell me. Open an issue with what happens in reality and what the skill assumed instead.
 
-[CONTRIBUTING.md](CONTRIBUTING.md) has the standard this repository holds itself to. Before opening a pull request, run `python3 validate-skills.py`. The same script runs on every pull request, so anything it catches locally is anything that would fail there.
+The evals in [`evals/`](evals) are written but have not been run against any model. A run, with the results recorded honestly, is a welcome contribution.
+
+[CONTRIBUTING.md](CONTRIBUTING.md) has the standard this repository holds itself to. Before opening a pull request, run `python3 validate-skills.py`. The same script runs on every pull request.
 
 ---
 
@@ -103,6 +148,6 @@ If you run meetings for a living and something here is wrong, that is the most u
 
 - **[Hustlyst](https://hustlyst.com?ref=github)** - twice a week on AI and automation tools for people who don't code
 - **[CS Pulse](https://cspulse.com?ref=github)** - community and newsletter for customer success practitioners
-- **[work-design](https://github.com/theAnirudhKumar/work-design)** - the rest of the set: vetting a tool before you sign up, carrying context between sessions, catching an expensive request
+- **[work-design](https://github.com/theAnirudhKumar/work-design)** - the rest of the set: vetting a tool before you sign up, carrying context between sessions, catching an expensive request, and choosing a meeting or a message before you book one
 
 MIT licensed. Fork it, change it, ship it.

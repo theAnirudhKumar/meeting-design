@@ -16,6 +16,11 @@ at 1,096 characters, over the limit, with its trigger phrases sitting in the
 part assistants truncate. A heading kept an old name after every other
 reference had been renamed.
 
+Three more checks were added after the defects they catch shipped: plugin.json
+said 1.0.1 while marketplace.json and VERSIONS.md said 1.1.0 and nothing
+noticed, so the three versions must now agree; every skill needs an eval file;
+and a relative link in a markdown file must resolve.
+
 This checks structure, not judgement. It cannot tell you whether a skill is
 worth installing. See CONTRIBUTING.md for the part that needs a person.
 """
@@ -28,6 +33,9 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 SKILLS_DIR = os.path.join(ROOT, 'skills')
 MANIFEST = os.path.join(ROOT, '.claude-plugin', 'marketplace.json')
 README = os.path.join(ROOT, 'README.md')
+PLUGIN = os.path.join(ROOT, '.claude-plugin', 'plugin.json')
+VERSIONS = os.path.join(ROOT, 'VERSIONS.md')
+EVALS_DIR = os.path.join(ROOT, 'evals')
 
 LINE_LIMIT = 500
 DESC_LIMIT = 1024
@@ -125,6 +133,53 @@ def check_manifest(bad):
             bad.append('README.md: skills table missing ' + ', '.join(sorted(missing)))
 
 
+def check_versions(bad):
+    """The version lives in three places. They drift unless something checks."""
+    found = {}
+    try:
+        found['plugin.json'] = json.load(open(PLUGIN, encoding='utf-8')).get('version')
+    except Exception as exc:
+        bad.append(f'plugin.json: unreadable, {exc}')
+    try:
+        data = json.load(open(MANIFEST, encoding='utf-8'))
+        found['marketplace.json'] = data.get('metadata', {}).get('version')
+    except Exception:
+        pass  # check_manifest already reports an unreadable manifest
+    if os.path.exists(VERSIONS):
+        m = re.search(r'^## (\d+\.\d+\.\d+)\s*$', open(VERSIONS, encoding='utf-8').read(), re.M)
+        found['VERSIONS.md'] = m.group(1) if m else None
+    else:
+        bad.append('VERSIONS.md: missing')
+    if len(set(found.values())) > 1 or None in found.values():
+        detail = ', '.join(f'{k} {v}' for k, v in sorted(found.items()))
+        bad.append(f'version mismatch or missing: {detail}')
+
+
+def check_evals(bad):
+    """Routing is untested without an eval file, and an untested skill that
+    never fires looks the same as one that was never written."""
+    for name in sorted(d for d in os.listdir(SKILLS_DIR)
+                       if os.path.exists(os.path.join(SKILLS_DIR, d, 'SKILL.md'))):
+        if not os.path.exists(os.path.join(EVALS_DIR, name + '.md')):
+            bad.append(f'evals/{name}.md: missing, every skill needs an eval file')
+
+
+LINK = re.compile(r'\]\(([^)\s]+)\)')
+
+
+def check_links(path, text, bad):
+    """Relative links in markdown must point at something that exists."""
+    text = re.sub(r'```.*?```', '', text, flags=re.S)
+    for target in LINK.findall(text):
+        if re.match(r'^[a-z][a-z0-9+.-]*:', target) or target.startswith('#'):
+            continue
+        target = target.split('#')[0]
+        if not target:
+            continue
+        if not os.path.exists(os.path.normpath(os.path.join(os.path.dirname(path), target))):
+            bad.append(f'{rel(path)}: broken link "{target}"')
+
+
 def main():
     bad = []
 
@@ -146,11 +201,14 @@ def main():
             path = os.path.join(dirpath, name)
             text = open(path, encoding='utf-8').read()
             check_punctuation(path, text, bad)
+            check_links(path, text, bad)
             if name == 'SKILL.md':
                 check_skill(path, text, bad)
                 check_reference_depth(os.path.dirname(path), bad)
 
     check_manifest(bad)
+    check_versions(bad)
+    check_evals(bad)
 
     if bad:
         print(f'{len(bad)} problem{"s" if len(bad) > 1 else ""}:\n')

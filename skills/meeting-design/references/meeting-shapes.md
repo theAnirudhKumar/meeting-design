@@ -48,7 +48,7 @@ The say-it-back check is what separates alignment from broadcast. If you skip it
 
 ---
 
-## Recurring meetings
+## A recurring meeting you chair
 
 A recurring meeting needs a decision sentence like any other, and it usually does not have one. Three fixes:
 
@@ -57,6 +57,8 @@ A recurring meeting needs a decision sentence like any other, and it usually doe
 **Run it off a live list.** Open items, owners, dates, on screen. If nothing on the list moved and nothing new is stuck, end early. Ending early is the reward that keeps the format honest.
 
 **Sunset it on a date.** Put a review date on every recurring hold. Meetings almost never get cancelled because nobody owns cancelling them, and a pre-agreed review date fixes that without anyone having to be the person who suggested it.
+
+For a whole calendar of recurring meetings, with a verdict on each, use the `meeting-audit` skill. For type-specific formats (standup, 1:1, retro), see `meeting-types.md`.
 
 ---
 

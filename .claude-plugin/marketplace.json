@@ -5,16 +5,18 @@
     "url": "https://github.com/theAnirudhKumar"
   },
   "metadata": {
-    "description": "Design the meeting before you run it",
-    "version": "1.1.0"
+    "description": "Design the meeting before, close it after, audit the ones that repeat",
+    "version": "2.0.0"
   },
   "plugins": [
     {
       "name": "meeting-design",
-      "description": "Designs a meeting before it happens so it produces a decision rather than a discussion that has to be repeated. Names the decision, picks the decision rule, cuts the room, sequences divergence before convergence, and plans for deadlock. Ships fill-in agenda and pre-read templates.",
+      "description": "Three skills for the whole life of a meeting. meeting-design fixes a pasted invite or builds an agenda: a verdict, a rewritten invite, the attendee cut and the meeting cost. meeting-close turns pasted notes into a decision record, a follow-up message and a list of what was never decided. meeting-audit takes recurring meetings and says which to keep, shrink, make async or kill, with hours freed and a sunset date. Works from pasted text; no recording, no connector required.",
       "source": "./",
       "skills": [
-        "./skills/meeting-design"
+        "./skills/meeting-design",
+        "./skills/meeting-close",
+        "./skills/meeting-audit"
       ]
     }
   ]

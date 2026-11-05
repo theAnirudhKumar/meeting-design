@@ -1,14 +1,14 @@
 ---
 name: Something here is wrong
-about: The skill assumed something that does not hold in your organisation
+about: A skill assumed something that does not hold in your organisation
 title: ''
 labels: ''
 assignees: ''
 ---
 
-**Which part**
+**Which skill and which part**
 
-<!-- A decision rule, an agenda shape, the room-cutting step, the deadlock plan. -->
+<!-- meeting-design, meeting-close or meeting-audit. A decision rule, an agenda shape, the room-cutting step, the verdict test, the deadlock plan, how a decision was recorded. -->
 
 
 

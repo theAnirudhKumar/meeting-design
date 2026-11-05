@@ -1,7 +1,7 @@
 {
   "name": "meeting-design",
-  "description": "Design the meeting before you run it. Names the decision, states the decision rule, cuts the room to the people who change the outcome, sequences divergence before convergence, and plans for deadlock in advance. Ships fill-in agenda and pre-read templates rather than advice.",
-  "version": "1.0.1",
+  "description": "Design the meeting before, close it after, audit the ones that repeat. Paste an invite for a verdict and a rewritten invite, paste notes for a decision record and follow-up, paste a recurring calendar for what to keep, shrink, make async or kill. Includes the meeting cost and ready-to-send templates.",
+  "version": "2.0.0",
   "author": {
     "name": "Anirudh Kumar",
     "url": "https://github.com/theAnirudhKumar"
