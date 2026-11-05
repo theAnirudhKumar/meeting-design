@@ -1,6 +1,6 @@
 # Evaluation: meeting-audit
 
-**Run on:** 5 Nov 2026, Haiku, Sonnet and Opus (run as model subagents), each shown only the verbatim descriptions of all 29 skills (26 in this repository plus the 3 in meeting-design), description snapshot `c4b8a8cfab44`. Judged on the description alone. A cell is the skill that model picked; **bold** means it differs from the expected answer. Cases with a single expected answer: 11. All three models matched on 11; Haiku 11, Sonnet 11, Opus 11. The protect-my-focus description was reworded after this run; see the targeted rerun in `evals/README.md`.
+**Run on:** 5 Nov 2026, second run with the 4.2.0 descriptions, Haiku, Sonnet and Opus (run as model subagents), each shown only the verbatim descriptions of all 29 skills (26 in this repository plus the 3 in meeting-design), description snapshot `731601fe12b6`. Judged on the description alone. A cell is the skill that model picked; **bold** means it differs from the expected answer. Cases with a single expected answer: 11. All three models matched on 10; Haiku 10, Sonnet 11, Opus 11.
 
 **Method** (from [README.md](README.md)): give a model the verbatim `description` of every skill in this repository, plus the sibling descriptions listed below, and nothing else. Put each message to it, ask for one skill name or `none`, with a confidence and a one-line reason. Repeat on Haiku, Sonnet and Opus. Record the disagreements. Pin the exact description text with the git commit it came from, because a result holds for one wording only.
 
@@ -14,11 +14,11 @@
 
 | # | Message | Expected | Haiku | Sonnet | Opus |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | "My calendar is wall to wall. Here are my recurring meetings. Which can go?" | meeting-audit | meeting-design | meeting-design | meeting-design |
-| 2 | "How much are our standing meetings costing us? List below." | meeting-audit | meeting-close | meeting-close | meeting-close |
+| 1 | "My calendar is wall to wall. Here are my recurring meetings. Which can go?" | meeting-audit | meeting-audit | meeting-audit | meeting-audit |
+| 2 | "How much are our standing meetings costing us? List below." | meeting-audit | meeting-audit | meeting-audit | meeting-audit |
 | 3 | "Audit my week: [pasted calendar export]" | meeting-audit | meeting-audit | meeting-audit | meeting-audit |
-| 4 | "We have a weekly sync that nobody likes. Should we still have it?" | meeting-audit | none | none | none |
-| 5 | "Help me clean up my calendar before the new quarter." | meeting-audit | meeting-or-message | meeting-or-message | meeting-or-message |
+| 4 | "We have a weekly sync that nobody likes. Should we still have it?" | meeting-audit | meeting-audit | meeting-audit | meeting-audit |
+| 5 | "Help me clean up my calendar before the new quarter." | meeting-audit | meeting-audit | meeting-audit | meeting-audit |
 | 6 | "Draft a message to cancel our Monday meeting without annoying anyone." | meeting-audit | meeting-audit | meeting-audit | meeting-audit |
 
 ## Should not fire
@@ -27,11 +27,11 @@ Near misses that belong to a sibling or to another repository. The pass conditio
 
 | # | Message | Expected | Haiku | Sonnet | Opus |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | "Fix the invite for next Tuesday's one-off planning meeting." | meeting-design | meeting-audit | meeting-audit | meeting-audit |
-| 2 | "Write up what we decided in this morning's meeting." | meeting-close | meeting-design | meeting-design | meeting-design |
-| 3 | "Block out focus time on my calendar every afternoon." | none (calendar editing, not an audit) | none | none | none |
-| 4 | "Find a time that works for six people next week." | none (scheduling) | meeting-audit | meeting-audit | meeting-audit |
-| 5 | "Should I send a Slack message or set up a meeting?" | meeting-or-message (other repo) | meeting-audit | meeting-audit | meeting-audit |
+| 1 | "Fix the invite for next Tuesday's one-off planning meeting." | meeting-design | meeting-design | meeting-design | meeting-design |
+| 2 | "Write up what we decided in this morning's meeting." | meeting-close | meeting-close | meeting-close | meeting-close |
+| 3 | "Block out focus time on my calendar every afternoon." | none (calendar editing, not an audit) | **protect-my-focus** | none | none |
+| 4 | "Find a time that works for six people next week." | none (scheduling) | none | none | none |
+| 5 | "Should I send a Slack message or set up a meeting?" | meeting-or-message (other repo) | meeting-or-message | meeting-or-message | meeting-or-message |
 
 ## Conflicts
 
@@ -40,7 +40,7 @@ No simple pass or fail. Record what each model chose and decide, in writing, whe
 | # | Message | Expected | Haiku | Sonnet | Opus |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | "Is this weekly meeting still worth having? Details: Fridays, 60 minutes, 9 people, status updates." | conflict: meeting-audit or meeting-design quick fix. Same case as in the meeting-design file; the two files should record the same result | meeting-audit | meeting-audit | meeting-audit |
-| 2 | "Redesign my team's standing standup so it is useful." | conflict: meeting-design (standup playbook) or meeting-audit. Redesigning one meeting leans to meeting-design; record what each model does | meeting-audit | meeting-audit | meeting-audit |
+| 2 | "Redesign my team's standing standup so it is useful." | conflict: meeting-design (standup playbook) or meeting-audit. Redesigning one meeting leans to meeting-design; record what each model does | meeting-design | meeting-design | meeting-design |
 
 ---
 
@@ -71,4 +71,6 @@ A description changes anywhere in the repository, a skill is added or removed, o
 
 ## Misses and how to read them
 
-No misses on cases with a single expected answer.
+| Case | Message | Expected | Haiku | Sonnet | Opus | Reading |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| meeting-audit#3.2 | "Block out focus time on my calendar every afternoon." | none (calendar editing, not an audit) | **protect-my-focus** | none | none | Calendar editing is not a skill here. protect-my-focus on Haiku is defensible. |
