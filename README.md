@@ -151,7 +151,7 @@ The evals in [`evals/`](evals) are written but have not been run against any mod
 
 ## Elsewhere
 
-- **[Hustlyst](https://hustlyst.com?ref=github)** - twice a week on AI and automation tools for people who don't code
+- **[Hustlyst](https://hustlyst.com?ref=github)** - AI and automation tools for people who don't code
 - **[CS Pulse](https://cspulse.com?ref=github)** - community and newsletter for customer success practitioners
 - **[work-design](https://github.com/theAnirudhKumar/work-design)** - the rest of the set: vetting a tool before you sign up, carrying context between sessions, catching an expensive request, and choosing a meeting or a message before you book one
 
