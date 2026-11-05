@@ -4,7 +4,7 @@ One file per skill. Each records which prompts should make the skill fire, which
 
 A skill that never fires is indistinguishable from a skill that was never written. `validate-skills.py` checks structure and a person reads the diff for judgement. Neither can tell you whether a description does its one job, which is what these cases are for.
 
-**Current status: none of these have been run.** The cases and the expected routing are written. No model has been put to them, so every results column says "not yet run". When a run happens, record the date, the models, the exact description text (the git commit is enough) and every disagreement, including the ones that look bad.
+**Current status: run once on 5 Nov 2026.** See the run log at the foot of this file. One sample per case on each model, so treat single flips as noise.
 
 | File | Skill | Cases |
 | :--- | :--- | :--- |
@@ -38,3 +38,7 @@ A skill that never fires is indistinguishable from a skill that was never writte
 ## When to rerun
 
 When any description changes, a skill is added or removed, or a model is added. Routing is competitive: a change to one skill can move a case belonging to another.
+
+## Run log
+
+A run on 5 Nov 2026 put the cases in this directory to Haiku, Sonnet and Opus together with the work-design descriptions (29 skills in all). Counts, the method and the reading of each miss are in each skill's file here, and the overall log, including the caveats, is in [work-design's evals README](https://github.com/theAnirudhKumar/work-design/blob/main/evals/README.md#run-log).
