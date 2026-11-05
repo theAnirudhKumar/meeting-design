@@ -1,10 +1,10 @@
 # Evaluation: meeting-design
 
-**Status: written, not yet run.** Nothing in this file is a model result. The Haiku, Sonnet and Opus columns say "not yet run" because no model was run against these cases when they were written. The Expected column is the routing the author intends, not an observation. Do not read a filled-in Expected column as evidence that the skill fires.
+**Run on:** 5 Nov 2026, Haiku, Sonnet and Opus (run as model subagents), each shown only the verbatim descriptions of all 29 skills (26 in this repository plus the 3 in meeting-design), description snapshot `c4b8a8cfab44`. Judged on the description alone. A cell is the skill that model picked; **bold** means it differs from the expected answer. Cases with a single expected answer: 15. All three models matched on 15; Haiku 15, Sonnet 15, Opus 15. The protect-my-focus description was reworded after this run; see the targeted rerun in `evals/README.md`.
 
 **Method** (from [README.md](README.md)): give a model the verbatim `description` of every skill in this repository, plus the sibling descriptions listed below, and nothing else. Put each message to it, ask for one skill name or `none`, with a confidence and a one-line reason. Repeat on Haiku, Sonnet and Opus. Record the disagreements. Pin the exact description text with the git commit it came from, because a result holds for one wording only.
 
-**Descriptions under test:** as at v2.0.0 of this repository.
+**Descriptions under test:** snapshot `c4b8a8cfab44`, the 29 descriptions shown together.
 
 **Sibling descriptions to include in a run:** `meeting-design`, `meeting-close`, `meeting-audit`, plus, from [work-design](https://github.com/theAnirudhKumar/work-design), `meeting-or-message`. For the cases marked "other repo" also include a call-recap or meeting-notes skill, such as the `call-recap` skill in common skill sets.
 
@@ -14,14 +14,14 @@
 
 | # | Message | Expected | Haiku | Sonnet | Opus |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | "Here is the invite for Thursday's alignment session with 12 people. Can you fix it?" | meeting-design | not yet run | not yet run | not yet run |
-| 2 | "Build me an agenda for a pricing decision meeting with sales and finance." | meeting-design | not yet run | not yet run | not yet run |
-| 3 | "Who should actually be in this meeting? Invite list pasted below." | meeting-design | not yet run | not yet run | not yet run |
-| 4 | "I have a board review on Monday. How should I structure it?" | meeting-design | not yet run | not yet run | not yet run |
-| 5 | "My 1:1s keep turning into status reports. How should I run them?" | meeting-design | not yet run | not yet run | not yet run |
-| 6 | "Our sprint retro has gone stale and nothing changes after it. Help me redesign it." | meeting-design | not yet run | not yet run | not yet run |
-| 7 | "Is my kickoff meeting necessary? Here is the description: [pasted]." | meeting-design | not yet run | not yet run | not yet run |
-| 8 | "Plan a two-day offsite for 10 people so we leave with decisions, not just a good conversation." | meeting-design | not yet run | not yet run | not yet run |
+| 1 | "Here is the invite for Thursday's alignment session with 12 people. Can you fix it?" | meeting-design | meeting-design | meeting-design | meeting-design |
+| 2 | "Build me an agenda for a pricing decision meeting with sales and finance." | meeting-design | meeting-or-message | meeting-or-message | meeting-or-message |
+| 3 | "Who should actually be in this meeting? Invite list pasted below." | meeting-design | meeting-design | meeting-design | meeting-design |
+| 4 | "I have a board review on Monday. How should I structure it?" | meeting-design | meeting-design | meeting-design | meeting-design |
+| 5 | "My 1:1s keep turning into status reports. How should I run them?" | meeting-design | none | none | none |
+| 6 | "Our sprint retro has gone stale and nothing changes after it. Help me redesign it." | meeting-design | meeting-design | meeting-design | meeting-design |
+| 7 | "Is my kickoff meeting necessary? Here is the description: [pasted]." | meeting-design | meeting-design | meeting-design | meeting-design |
+| 8 | "Plan a two-day offsite for 10 people so we leave with decisions, not just a good conversation." | meeting-design | meeting-design | meeting-design | meeting-design |
 
 ## Should not fire
 
@@ -29,12 +29,12 @@ Near misses that belong to a sibling or to another repository. The pass conditio
 
 | # | Message | Expected | Haiku | Sonnet | Opus |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | "Here are my notes from the call. What did we actually decide?" | meeting-close | not yet run | not yet run | not yet run |
-| 2 | "Audit my recurring meetings and tell me which to cancel." | meeting-audit | not yet run | not yet run | not yet run |
-| 3 | "Should I send an email or hop on a call to tell the team about the deadline change?" | meeting-or-message (other repo) | not yet run | not yet run | not yet run |
-| 4 | "Summarise this call transcript for me." | none of the three; a call-recap or notes skill (other repo) | not yet run | not yet run | not yet run |
-| 5 | "Find a time for me and Sam to meet on Tuesday." | none (scheduling is not this skill) | not yet run | not yet run | not yet run |
-| 6 | "Write the follow-up email to the attendees of yesterday's meeting." | meeting-close | not yet run | not yet run | not yet run |
+| 1 | "Here are my notes from the call. What did we actually decide?" | meeting-close | meeting-close | meeting-close | meeting-close |
+| 2 | "Audit my recurring meetings and tell me which to cancel." | meeting-audit | meeting-design | meeting-design | meeting-design |
+| 3 | "Should I send an email or hop on a call to tell the team about the deadline change?" | meeting-or-message (other repo) | meeting-design | meeting-design | meeting-design |
+| 4 | "Summarise this call transcript for me." | none of the three; a call-recap or notes skill (other repo) | none | none | none |
+| 5 | "Find a time for me and Sam to meet on Tuesday." | none (scheduling is not this skill) | meeting-design | meeting-design | meeting-design |
+| 6 | "Write the follow-up email to the attendees of yesterday's meeting." | meeting-close | meeting-close | meeting-close | meeting-close |
 
 ## Conflicts
 
@@ -42,9 +42,9 @@ No simple pass or fail. Record what each model chose and decide, in writing, whe
 
 | # | Message | Expected | Haiku | Sonnet | Opus |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | "Is this weekly meeting still worth having? Details: Fridays, 60 minutes, 9 people, status updates." | conflict: meeting-design quick fix or meeting-audit. Both give a verdict. Record what each model does and decide in writing; a split is acceptable if both land on a verdict and a cost line | not yet run | not yet run | not yet run |
-| 2 | "Should this be a meeting or can I just send a message?" | meeting-or-message (other repo). meeting-design starts once a meeting exists or is planned | not yet run | not yet run | not yet run |
-| 3 | "I need to run a meeting and then write it up. Can you help with both?" | conflict: meeting-design first, meeting-close later. Record whether the model names both | not yet run | not yet run | not yet run |
+| 1 | "Is this weekly meeting still worth having? Details: Fridays, 60 minutes, 9 people, status updates." | conflict: meeting-design quick fix or meeting-audit. Both give a verdict. Record what each model does and decide in writing; a split is acceptable if both land on a verdict and a cost line | meeting-audit | meeting-audit | meeting-audit |
+| 2 | "Should this be a meeting or can I just send a message?" | meeting-or-message (other repo). meeting-design starts once a meeting exists or is planned | meeting-audit | meeting-audit | meeting-audit |
+| 3 | "I need to run a meeting and then write it up. Can you help with both?" | conflict: meeting-design first, meeting-close later. Record whether the model names both | meeting-or-message | meeting-or-message | meeting-or-message |
 
 ---
 
@@ -71,3 +71,7 @@ Run one case, the pasted-invite one, and check the output has:
 ## Rerun when
 
 A description changes anywhere in the repository, a skill is added or removed, or a model is added to the set.
+
+## Misses and how to read them
+
+No misses on cases with a single expected answer.

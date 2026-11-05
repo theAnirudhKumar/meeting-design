@@ -1,10 +1,10 @@
 # Evaluation: meeting-audit
 
-**Status: written, not yet run.** Nothing in this file is a model result. The Haiku, Sonnet and Opus columns say "not yet run" because no model was run against these cases when they were written. The Expected column is the routing the author intends, not an observation. Do not read a filled-in Expected column as evidence that the skill fires.
+**Run on:** 5 Nov 2026, Haiku, Sonnet and Opus (run as model subagents), each shown only the verbatim descriptions of all 29 skills (26 in this repository plus the 3 in meeting-design), description snapshot `c4b8a8cfab44`. Judged on the description alone. A cell is the skill that model picked; **bold** means it differs from the expected answer. Cases with a single expected answer: 11. All three models matched on 11; Haiku 11, Sonnet 11, Opus 11. The protect-my-focus description was reworded after this run; see the targeted rerun in `evals/README.md`.
 
 **Method** (from [README.md](README.md)): give a model the verbatim `description` of every skill in this repository, plus the sibling descriptions listed below, and nothing else. Put each message to it, ask for one skill name or `none`, with a confidence and a one-line reason. Repeat on Haiku, Sonnet and Opus. Record the disagreements. Pin the exact description text with the git commit it came from, because a result holds for one wording only.
 
-**Descriptions under test:** as at v2.0.0 of this repository.
+**Descriptions under test:** snapshot `c4b8a8cfab44`, the 29 descriptions shown together.
 
 **Sibling descriptions to include in a run:** `meeting-design`, `meeting-close`, `meeting-audit`, plus, from [work-design](https://github.com/theAnirudhKumar/work-design), `meeting-or-message`. For the cases marked "other repo" also include a call-recap or meeting-notes skill, such as the `call-recap` skill in common skill sets.
 
@@ -14,12 +14,12 @@
 
 | # | Message | Expected | Haiku | Sonnet | Opus |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | "My calendar is wall to wall. Here are my recurring meetings. Which can go?" | meeting-audit | not yet run | not yet run | not yet run |
-| 2 | "How much are our standing meetings costing us? List below." | meeting-audit | not yet run | not yet run | not yet run |
-| 3 | "Audit my week: [pasted calendar export]" | meeting-audit | not yet run | not yet run | not yet run |
-| 4 | "We have a weekly sync that nobody likes. Should we still have it?" | meeting-audit | not yet run | not yet run | not yet run |
-| 5 | "Help me clean up my calendar before the new quarter." | meeting-audit | not yet run | not yet run | not yet run |
-| 6 | "Draft a message to cancel our Monday meeting without annoying anyone." | meeting-audit | not yet run | not yet run | not yet run |
+| 1 | "My calendar is wall to wall. Here are my recurring meetings. Which can go?" | meeting-audit | meeting-design | meeting-design | meeting-design |
+| 2 | "How much are our standing meetings costing us? List below." | meeting-audit | meeting-close | meeting-close | meeting-close |
+| 3 | "Audit my week: [pasted calendar export]" | meeting-audit | meeting-audit | meeting-audit | meeting-audit |
+| 4 | "We have a weekly sync that nobody likes. Should we still have it?" | meeting-audit | none | none | none |
+| 5 | "Help me clean up my calendar before the new quarter." | meeting-audit | meeting-or-message | meeting-or-message | meeting-or-message |
+| 6 | "Draft a message to cancel our Monday meeting without annoying anyone." | meeting-audit | meeting-audit | meeting-audit | meeting-audit |
 
 ## Should not fire
 
@@ -27,11 +27,11 @@ Near misses that belong to a sibling or to another repository. The pass conditio
 
 | # | Message | Expected | Haiku | Sonnet | Opus |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | "Fix the invite for next Tuesday's one-off planning meeting." | meeting-design | not yet run | not yet run | not yet run |
-| 2 | "Write up what we decided in this morning's meeting." | meeting-close | not yet run | not yet run | not yet run |
-| 3 | "Block out focus time on my calendar every afternoon." | none (calendar editing, not an audit) | not yet run | not yet run | not yet run |
-| 4 | "Find a time that works for six people next week." | none (scheduling) | not yet run | not yet run | not yet run |
-| 5 | "Should I send a Slack message or set up a meeting?" | meeting-or-message (other repo) | not yet run | not yet run | not yet run |
+| 1 | "Fix the invite for next Tuesday's one-off planning meeting." | meeting-design | meeting-audit | meeting-audit | meeting-audit |
+| 2 | "Write up what we decided in this morning's meeting." | meeting-close | meeting-design | meeting-design | meeting-design |
+| 3 | "Block out focus time on my calendar every afternoon." | none (calendar editing, not an audit) | none | none | none |
+| 4 | "Find a time that works for six people next week." | none (scheduling) | meeting-audit | meeting-audit | meeting-audit |
+| 5 | "Should I send a Slack message or set up a meeting?" | meeting-or-message (other repo) | meeting-audit | meeting-audit | meeting-audit |
 
 ## Conflicts
 
@@ -39,8 +39,8 @@ No simple pass or fail. Record what each model chose and decide, in writing, whe
 
 | # | Message | Expected | Haiku | Sonnet | Opus |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | "Is this weekly meeting still worth having? Details: Fridays, 60 minutes, 9 people, status updates." | conflict: meeting-audit or meeting-design quick fix. Same case as in the meeting-design file; the two files should record the same result | not yet run | not yet run | not yet run |
-| 2 | "Redesign my team's standing standup so it is useful." | conflict: meeting-design (standup playbook) or meeting-audit. Redesigning one meeting leans to meeting-design; record what each model does | not yet run | not yet run | not yet run |
+| 1 | "Is this weekly meeting still worth having? Details: Fridays, 60 minutes, 9 people, status updates." | conflict: meeting-audit or meeting-design quick fix. Same case as in the meeting-design file; the two files should record the same result | meeting-audit | meeting-audit | meeting-audit |
+| 2 | "Redesign my team's standing standup so it is useful." | conflict: meeting-design (standup playbook) or meeting-audit. Redesigning one meeting leans to meeting-design; record what each model does | meeting-audit | meeting-audit | meeting-audit |
 
 ---
 
@@ -68,3 +68,7 @@ Run the eight-meeting case in [examples/recurring-audit.md](../examples/recurrin
 ## Rerun when
 
 A description changes anywhere in the repository, a skill is added or removed, or a model is added to the set.
+
+## Misses and how to read them
+
+No misses on cases with a single expected answer.
