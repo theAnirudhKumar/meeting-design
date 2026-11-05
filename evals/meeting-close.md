@@ -1,6 +1,6 @@
 # Evaluation: meeting-close
 
-**Run on:** 5 Nov 2026, Haiku, Sonnet and Opus (run as model subagents), each shown only the verbatim descriptions of all 29 skills (26 in this repository plus the 3 in meeting-design), description snapshot `c4b8a8cfab44`. Judged on the description alone. A cell is the skill that model picked; **bold** means it differs from the expected answer. Cases with a single expected answer: 12. All three models matched on 11; Haiku 11, Sonnet 12, Opus 11. The protect-my-focus description was reworded after this run; see the targeted rerun in `evals/README.md`.
+**Run on:** 5 Nov 2026, second run with the 4.2.0 descriptions, Haiku, Sonnet and Opus (run as model subagents), each shown only the verbatim descriptions of all 29 skills (26 in this repository plus the 3 in meeting-design), description snapshot `731601fe12b6`. Judged on the description alone. A cell is the skill that model picked; **bold** means it differs from the expected answer. Cases with a single expected answer: 12. All three models matched on 11; Haiku 11, Sonnet 11, Opus 11.
 
 **Method** (from [README.md](README.md)): give a model the verbatim `description` of every skill in this repository, plus the sibling descriptions listed below, and nothing else. Put each message to it, ask for one skill name or `none`, with a confidence and a one-line reason. Repeat on Haiku, Sonnet and Opus. Record the disagreements. Pin the exact description text with the git commit it came from, because a result holds for one wording only.
 
@@ -14,10 +14,10 @@
 
 | # | Message | Expected | Haiku | Sonnet | Opus |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | "Here are my notes from the pricing call. Write up what we decided." | meeting-close | none | none | none |
+| 1 | "Here are my notes from the pricing call. Write up what we decided." | meeting-close | meeting-close | meeting-close | meeting-close |
 | 2 | "Draft the follow-up email for the meeting we just had. Notes below." | meeting-close | meeting-close | meeting-close | meeting-close |
 | 3 | "What did we actually agree on in this thread? Who owns what?" | meeting-close | meeting-close | meeting-close | meeting-close |
-| 4 | "Turn this transcript into a decision log with owners and dates." | meeting-close | meeting-audit | meeting-audit | meeting-audit |
+| 4 | "Turn this transcript into a decision log with owners and dates." | meeting-close | meeting-close | meeting-close | meeting-close |
 | 5 | "We talked about a lot of things in the planning meeting. Which ones did we actually decide?" | meeting-close | meeting-close | meeting-close | meeting-close |
 | 6 | "Here is the recap from our sync. Flag anything we discussed but never settled." | meeting-close | meeting-close | meeting-close | meeting-close |
 
@@ -27,12 +27,12 @@ Near misses that belong to a sibling or to another repository. The pass conditio
 
 | # | Message | Expected | Haiku | Sonnet | Opus |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | "Summarise this call so I can read it in two minutes." | none of the three; a call-recap or notes skill (other repo) | meeting-close | meeting-close | meeting-close |
+| 1 | "Summarise this call so I can read it in two minutes." | none of the three; a call-recap or notes skill (other repo) | none | none | none |
 | 2 | "Transcribe this recording." | none (this skill does not record or transcribe) | none | none | none |
 | 3 | "Build an agenda for next week's planning meeting." | meeting-design | meeting-design | meeting-design | meeting-design |
-| 4 | "Which of my recurring meetings should I cancel?" | meeting-audit | meeting-close | meeting-close | meeting-close |
-| 5 | "Prep me for my call with the client tomorrow." | none of the three; a call-prep skill (other repo) | **meeting-design** | none | **meeting-design** |
-| 6 | "Pull the action items out of this email chain into a task list." | none, or meeting-close if the thread was a meeting recap. Record which | meeting-close | meeting-close | none |
+| 4 | "Which of my recurring meetings should I cancel?" | meeting-audit | meeting-audit | meeting-audit | meeting-audit |
+| 5 | "Prep me for my call with the client tomorrow." | none of the three; a call-prep skill (other repo) | **meeting-design** | **meeting-design** | **meeting-design** |
+| 6 | "Pull the action items out of this email chain into a task list." | none, or meeting-close if the thread was a meeting recap. Record which | meeting-close | meeting-close | meeting-close |
 
 ## Conflicts
 
@@ -74,4 +74,4 @@ A description changes anywhere in the repository, a skill is added or removed, o
 
 | Case | Message | Expected | Haiku | Sonnet | Opus | Reading |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| meeting-close#5.2 | "Prep me for my call with the client tomorrow." | none of the three; a call-prep skill (ot | **meeting-design** | none | **meeting-design** | Stale expectation. "Prep my client call" belongs to meeting-design, which is installed alongside now. |
+| meeting-close#5.2 | "Prep me for my call with the client tomorrow." | none of the three; a call-prep skill (ot | **meeting-design** | **meeting-design** | **meeting-design** | Stale expectation. "Prep my client call" belongs to meeting-design, which is installed alongside now. |

@@ -50,15 +50,16 @@ Many AI meeting tools work after the meeting and summarise it. These three work 
 
 ## Install
 
-**In Claude Code or Cowork, one line:**
+**In Claude Code or Cowork, one line (Claude Code 2.1.275 or later):**
+
+```
+/plugin install meeting-design --marketplace theAnirudhKumar/meeting-design
+```
+
+**On an older version, two lines:**
 
 ```
 /plugin marketplace add theAnirudhKumar/meeting-design
-```
-
-then
-
-```
 /plugin install meeting-design@meeting-design-marketplace
 ```
 
