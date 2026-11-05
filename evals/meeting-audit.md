@@ -6,7 +6,7 @@
 
 **Descriptions under test:** as at v2.0.0 of this repository.
 
-**Sibling descriptions to include in a run:** `meeting-design`, `meeting-close`, `meeting-audit`, plus, from [work-design](https://github.com/theAnirudhKumar/work-design), `pick-the-medium`. For the cases marked "other repo" also include a call-recap or meeting-notes skill, such as the `call-recap` skill in common skill sets.
+**Sibling descriptions to include in a run:** `meeting-design`, `meeting-close`, `meeting-audit`, plus, from [work-design](https://github.com/theAnirudhKumar/work-design), `meeting-or-message`. For the cases marked "other repo" also include a call-recap or meeting-notes skill, such as the `call-recap` skill in common skill sets.
 
 ---
 
@@ -31,7 +31,7 @@ Near misses that belong to a sibling or to another repository. The pass conditio
 | 2 | "Write up what we decided in this morning's meeting." | meeting-close | not yet run | not yet run | not yet run |
 | 3 | "Block out focus time on my calendar every afternoon." | none (calendar editing, not an audit) | not yet run | not yet run | not yet run |
 | 4 | "Find a time that works for six people next week." | none (scheduling) | not yet run | not yet run | not yet run |
-| 5 | "Should I send a Slack message or set up a meeting?" | pick-the-medium (other repo) | not yet run | not yet run | not yet run |
+| 5 | "Should I send a Slack message or set up a meeting?" | meeting-or-message (other repo) | not yet run | not yet run | not yet run |
 
 ## Conflicts
 
