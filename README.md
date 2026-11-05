@@ -135,6 +135,10 @@ What these skills add is the sequencing, the quick-fix path from a pasted invite
 
 ---
 
+## Data and privacy
+
+These skills are plain markdown instructions. They contain no code, make no network calls, collect nothing and have no telemetry. They work on text you paste into a chat and see only that, plus whatever your AI tool already has in context. `meeting-audit` can use a calendar connector if your tool has one and you allow it, read-only, but it works fine from pasted text. Nothing is written, sent or saved unless you approve it. Anything you paste is handled by your AI tool under that tool's own terms.
+
 ## Contribute
 
 If you run meetings for a living and something here is wrong, that is the most useful thing you can tell me. Open an issue with what happens in reality and what the skill assumed instead.
