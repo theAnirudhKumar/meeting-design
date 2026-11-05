@@ -1,14 +1,14 @@
 ---
-name: A meeting shape is missing
-about: You run one that is not decide, generate or align
+name: A meeting shape or type is missing
+about: You run one that is not covered by the shapes or types in the skill
 title: ''
 labels: ''
 assignees: ''
 ---
 
-**The shape**
+**The meeting**
 
-<!-- What is the meeting for, in one sentence a chair would recognise? -->
+<!-- What is it for, in one sentence a chair would recognise? Say whether it is before, after, or recurring. -->
 
 
 
@@ -20,4 +20,4 @@ assignees: ''
 
 
 
-**Why it is not decide, generate or align**
+**Why it is not decide, generate, align, or one of the types already listed** (1:1, standup or status, customer call, retro, interview, board or exec review)

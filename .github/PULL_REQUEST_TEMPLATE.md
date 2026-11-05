@@ -16,6 +16,8 @@
 - [ ] The skill states the least it needs to run, and nothing is a prerequisite
 - [ ] The failure it prevents is named
 - [ ] It ships an asset, or there is a reason it does not
+- [ ] It has an eval file, and any result in it was observed, not assumed
+- [ ] Version bumped in plugin.json, marketplace.json and VERSIONS.md together, if this is a release
 - [ ] Claims about how meetings work name where they come from
 - [ ] Worked examples use an invented organisation
 - [ ] No real customer, employer or personal names
